@@ -1,0 +1,258 @@
+form.form-horizontal.tasi-form(name="pessoaCadastro", novalidate="", ng-submit="vm.salvar(vm.usuario)")
+    section.panel
+        header.panel-heading Usuário
+        div.panel-body
+
+            div.form-group(ng-class="$validationContainer(pessoaCadastro, 'pessoa-email')")
+                label.control-label.col-md-2 E-mail
+                div.col-md-4
+                    div
+                        input.form-control(
+                            ng-model="vm.pessoa.email",
+                            name="pessoa-email",
+                            ng-disabled="!vm.isEditable",
+                            type="text",
+                            ng-required="true",
+                            ng-minlength="4",
+                            placeholder="seuemail@provedor.com"
+                            maxlength=70
+                        )
+                        custom-validator-messages(input-name="pessoa-email")
+            div.form-group(ng-class="$validationContainer(pessoaCadastro, 'pessoa-email')")
+                label.control-label.col-md-2 Senha
+                div.col-md-3
+                    div
+                        input.form-control(
+                            ng-model="vm.pessoa.user.password",
+                            name="pessoa-password",
+                            ng-required="true",
+                            ng-disabled="!vm.isEditable",
+                            type="password",
+                            placeholder="insira uma senha com letras e números"
+                            maxlength=20
+
+                        )
+                        custom-validator-messages(input-name="pessoa-password-check")
+                label.control-label.col-md-2 Repita a senha
+                div.col-md-3
+                    div
+                        input.form-control(
+                            ng-model="vm.passwordCheck",
+                            name="pessoa-password-check",
+                            ng-required="true",
+                            ng-disabled="!vm.isEditable",
+                            type="password",
+                            placeholder="re-digite a senha"
+                        )
+                        custom-validator-messages(input-name="pessoa-password-check")
+            div.form-group(ng-class="$validationContainer(pessoaCadastro, 'pessoa-perfil')")
+                label.control-label.col-md-2 Perfil
+                div.col-md-3
+                    select.form-control(
+                        ng-model="vm.pessoa.user.profile",
+                        name="pessoa-perfil",
+                        ng-required="true",
+                        ng-disabled="!vm.isEditable",
+                        ng-options="perfil as perfil.name for perfil in vm.listaPerfis track by perfil.id"
+                    )
+                    custom-validator-messages(input-name="pessoa-perfil")
+            div.form-group(ng-class="$validationContainer(pessoaCadastro, 'pessoa-nome')")
+                label.control-label.col-md-2 Nome
+                div.col-md-5
+                    div
+                        input.form-control(
+                            ng-model="vm.pessoa.nome",
+                            name="pessoa-nome",
+                            ng-disabled="!vm.isEditable",
+                            ng-required="true"
+                            type="text",
+                            placeholder="Seu Nome Completo"
+                            maxlength=120
+                        )
+                        custom-validator-messages(input-name="pessoa-nome")
+
+            div.form-group(ng-class="$validationContainer(pessoaCadastro, 'pessoa-cpf')")
+                label.control-label.col-md-2 CPF
+                div.col-md-3
+                    div
+                        input.form-control(
+                            ng-model="vm.pessoa.cpf",
+                            name="pessoa-cpf",
+                            ng-disabled="!vm.isEditable",
+                            type="text",
+                            ui-mask="999.999.999-99"
+                            maxlength=14
+                        )
+                        custom-validator-messages(input-name="pessoa-cpf")
+
+
+            div.form-group
+                label.control-label.col-md-2 RG
+                div.col-md-2
+                    div
+                        input.form-control(
+                            ng-model="vm.pessoa.registro",
+                            name="pessoa-registro",
+                            ng-disabled="!vm.isEditable",
+                            type="text",
+                            maxlength=20
+                        )
+                label.control-label.col-md-1 Orgão
+                div.col-md-2
+                    div
+                        input.form-control(
+                            ng-model="vm.pessoa.orgaoRegistro",
+                            name="pessoa-orgao-registro",
+                            ng-disabled="!vm.isEditable",
+                            type="text",
+                            placeholder="Ex. SSP"
+                            maxlength=15
+                        )
+                label.control-label.col-md-1 UF do RG
+                div.col-md-2
+                    select.form-control(
+                        ng-model="vm.pessoa.ufRegistro",
+                        name="endereco-estado",
+                        ng-disabled="!vm.isEditable",
+                        ng-options="ufRegistro as ufRegistro.id for ufRegistro in vm.ufs track by ufRegistro.id"
+                    )
+
+
+    section.panel
+        header.panel-heading(
+            ng-model="vm.pessoa.telefones",
+            ng-required="true",
+            name="pessoa-telefones"
+            ) Telefones
+        div.panel-body
+
+            div.form-group(ng-repeat="telefone in vm.pessoa.telefones track by $index")
+                label.control-label.col-md-2 Tipo
+                div.col-md-4
+                    label.control-label {{telefone.tipo}}
+                label.control-label.col-md-2 Telefone
+                div.col-md-3
+                    label.control-label {{telefone.numero}}
+                div.col-md-1
+                    button.btn.btn-danger.pull-right(
+                        type="button",
+                        ng-disabled="!vm.isEditable"
+                        ng-click="vm.deletarTelefone($index)"
+                    ) x
+
+            div.form-group.form-group(ng-class="$validationContainer(pessoaCadastro, 'pessoa-telefones')")
+                label.control-label.col-md-2 Telefone
+                div.col-md-2
+                    input.form-control(
+                        ng-model="vm.novoTelefone.numero",
+                        name="telefone-novo-numero",
+                        ng-disabled="!vm.isEditable",
+                        type="text",
+                        placeholder="",
+                        ui-mask="(99)9999-9999"
+                    )
+                    custom-validator-messages(input-name="pessoa-telefones")
+
+                label.control-label.col-md-1 Tipo
+                div.col-md-2
+                    select.form-control.m-b-4(
+                    ng-model="vm.novoTelefone.tipo",
+                    name="telefone-novo-tipo",
+                    ng-disabled="!vm.isEditable"
+                    )
+                        option(ng-repeat="tipo in vm.listaTipoTelefones" value="{{tipo}}") {{tipo}}
+                    custom-validator-messages(input-name="pessoa-telefones")
+
+                div.col-md-1
+                    button.btn.btn-success.pull-right(
+                        type="button",
+                        ng-disabled="!vm.isEditable"
+                        ng-click="vm.adicionarTelefone(vm.novoTelefone)"
+                    ) +
+
+    //ENDERECO
+    section.panel
+        header.panel-heading Endereço
+        div.panel-body
+            div.form-group
+                label.control-label.col-md-2 UF
+                div.col-md-1
+                    select.form-control.m-b-2(
+                        ng-model="vm.novoEndereco.uf",
+                        name="endereco-estado",
+                        ng-disabled="!vm.isEditable",
+                        ng-change="vm.recuperarCidades(uf)"
+                    )
+                        option(ng-repeat="uf in vm.ufs" value="{{uf}}") {{uf.id}}
+                label.control-label.col-md-1 Cidade
+                div.col-md-4
+                    select.form-control.m-b-4(
+                        ng-model="vm.novoEndereco.cidade",
+                        name="endereco-cidade",
+                        ng-disabled="!vm.isEditable"
+                    )
+                        option(ng-repeat="cidade in ['Campinas', 'Brasília']" value="{{cidade}}") {{cidade}}
+            div.form-group
+                label.control-label.col-md-2 Logradouro
+                div.col-md-7
+                    input.form-control(
+                        ng-model="vm.novoEndereco.endereco1",
+                        name="endereco-logradouro",
+                        ng-disabled="!vm.isEditable",
+                        type="text",
+                        placeholder="Rua/Av: Nome da rua/avenida",
+                        maxlength=80
+                    )
+                label.control-label.col-md-1 Nº
+                div.col-md-2
+                    input.form-control(
+                        ng-model="vm.novoEndereco.numero",
+                        name="endereco-numero",
+                        ng-disabled="!vm.isEditable",
+                        type="text",
+                        placeholder="0000",
+                        maxlength=10
+                    )
+            div.form-group
+                label.control-label.col-md-2 Bairro
+                div.col-md-4
+                    input.form-control(
+                    ng-model="vm.novoEndereco.bairro",
+                    name="endereco-bairro",
+                    ng-disabled="!vm.isEditable",
+                    type="text",
+                    placeholder="nome do bairro",
+                    maxlength=30
+                    )
+                label.control-label.col-md-1 CEP
+                div.col-md-2
+                    input.form-control(
+                    ng-model="vm.novoEndereco.cep",
+                    ng-disabled="!vm.isEditable",
+                    name="endereco-cep",
+                    type="text",
+                    ui-mask="99999-999",
+                    maxlength=10
+                    )
+            div.form-group
+                label.control-label.col-md-2 Complemento
+                div.col-md-4
+                    input.form-control(
+                        ng-model="vm.novoEndereco.complemento",
+                        name="endereco-complemento",
+                        ng-disabled="!vm.isEditable",
+                        type="text",
+                        placeholder="",
+                        maxlength=40
+                    )
+
+    div.form-group
+        div.col-md-offset-2.col-md-10
+            button.btn.btn-success.pull-right(
+                type="submit",
+                ng-disabled="!vm.isEditable"
+            ) {{vm.labels.salvar}}
+            button.btn.btn-error.pull-right(
+                type="submit",
+                ng-click="vm.voltar()"
+            ) {{vm.labels.voltar}}

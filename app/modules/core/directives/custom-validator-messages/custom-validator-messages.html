@@ -1,0 +1,4 @@
+
+<div class="error-container" ng-messages="form[inputName].$error" ng-show="form.$submitted">
+  <label class="error" ng-repeat="(key, value) in form[inputName].$error" ng-message-exp="key">{{ concatDefaultStringMsg(key) | translate}}</label>
+</div>

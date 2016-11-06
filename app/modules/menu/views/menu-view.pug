@@ -1,0 +1,17 @@
+div.sidebar-left
+    div.logo.dark-logo-bg
+        a
+            img(src="assets/img/logo-icon.png")
+            i.fa.fa-maxcdn
+            span.brand-name App
+
+    div.sidebar-left-info
+        div.search-field
+
+        ul.nav.nav-pills.nav-stacked.side-navigation
+            li
+                h3.navigation-title Menu
+            li(ng-repeat="item in menu.items")
+                a(ng-click="item.action()", href="")
+                    i(class="fa {{item.icon}}")
+                    span {{item.texto}}

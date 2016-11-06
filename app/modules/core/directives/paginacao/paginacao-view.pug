@@ -1,0 +1,10 @@
+div
+    ul(
+        uib-pagination="",
+        total-items="dto.totalResults",
+        items-per-page="dto.pageSize",
+        ng-change="updateList()",
+        ng-model="dto.currentPage",
+        previous-text="Anterior",
+        next-text="Próxima"
+    )

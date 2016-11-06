@@ -1,0 +1,6 @@
+div.modal-header
+    h3.modal-title Deletar o usuário {{usuario.email}}
+div.modal-body Deletar o usuário {{vm.usuario.email}}({{vm.usuario.nome}})
+div.modal-footer
+    button.btn.btn-danger(ng-click="vm.deletar()") Deletar
+    button.btn.btn-info(ng-click="vm.cancelar()") Cancelar

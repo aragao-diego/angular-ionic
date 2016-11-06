@@ -1,0 +1,64 @@
+// Color variables (appears count calculates by raw css)
+@logo-primary-color: #7cd8a9; // Appears 2 times
+@logo-accent-color: #ffffff; // Appears 2 times
+
+
+// Height variables (appears count calculates by raw css)
+@logo-height: 60px; // Appears 2 times
+
+.logo {
+	height: @logo-height;
+	left: 0;
+	line-height: @logo-height;
+	padding-left: 20px;
+	position: absolute;
+	top: 0;
+	width: 240px;
+	z-index: 100;
+	a {
+		color: @logo-accent-color;
+		display: inline-block;
+		float: none;
+		font-size: 22px;
+		margin: 0;
+		text-decoration: none;
+		i {
+			color: @logo-primary-color;
+			display: inline;
+			font-size: 24px;
+			margin-right: 10px;
+			padding-right: 5px;
+			vertical-align: middle;
+		}
+		.brand-name {
+			float: right;
+		}
+		img {
+			display: inline;
+			margin-right: 10px;
+			vertical-align: middle;
+		}
+	}
+}
+.icon-logo {
+	display: none;
+	a {
+		color: @logo-primary-color;
+		&:hover {
+			color: @logo-accent-color;
+		}
+	}
+}
+.sidebar-collapsed {
+	.icon-logo {
+		display: block !important;
+		font-size: 24px;
+		height: @logo-height;
+		left: -52px;
+		line-height: 45px;
+		padding-top: 5px;
+		position: absolute;
+		text-align: center;
+		width: 52px;
+	}
+}

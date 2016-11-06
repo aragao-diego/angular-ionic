@@ -1,0 +1,35 @@
+div.row
+    div.col-lg-12
+        section.panel
+            header.panel-heading.head-border Lista de Usuários
+                div.pull-right
+                    button.btn.btn-success.btn-xs(ui-sref="private.pessoa.inserir")
+                        i.fa.fa-plus
+
+            table.table.table-striped.custom-table.table-hover
+                thead
+                    tr
+                        th(ng-repeat="campo in vm.campos")
+                            i(class="fa {{campo.icone}}")
+                            span &nbsp{{campo.titulo}}
+
+                tbody
+                    tr(ng-repeat="pessoa in vm.pessoas")
+                        td {{pessoa.nome}} &nbsp&nbsp
+                            span.label.label-default(ng-if="pessoa.user.master", title="Usuário Master") Master
+                        td {{pessoa.email}}
+                        td {{pessoa.cpf}}
+                        td
+                            span {{pessoa.user.profile.name}}
+                        td
+                            button.btn.btn-success.btn-xs(ng-click="vm.visualizarPessoa(pessoa)")
+                                i.fa.fa-eye
+                            button.btn.btn-success.btn-xs(ng-click="vm.editarPessoa(pessoa)")
+                                i.fa.fa-pencil
+                            button.btn.btn-success.btn-xs(ng-click="vm.deletarPessoa(pessoa)")
+                                i.fa.fa-trash-o
+
+            paginacao(
+                dto="vm.dto",
+                update-list="vm.consultar()"
+            )

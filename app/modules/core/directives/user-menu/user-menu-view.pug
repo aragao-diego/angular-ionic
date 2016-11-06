@@ -1,0 +1,11 @@
+ul.notification-menu
+    li(uib-dropdown="")
+        a#user-menu.btn.btn-default.dropdown-toggle(uib-dropdown-toggle="")
+            img(src="assets/img/avatar-mini.jpg")
+            | {{vm.user.email}}
+            span.fa.fa-angle-down
+        ul.dropdown-menu.dropdown-usermenu.pull-right(uib-dropdown-menu="", aria-labelledby="user-menu")
+            li
+                a(href="#", ui-sref="public.login.logout")
+                    i.fa.fa-sign-out.pull-right
+                    | Sair

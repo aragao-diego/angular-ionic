@@ -1,0 +1,9 @@
+/dist/
+/grunt-maven.json
+/npm-debug.log
+app/bower_components/
+/node_modules/
+bower_components/
+**/.idea
+*.project
+

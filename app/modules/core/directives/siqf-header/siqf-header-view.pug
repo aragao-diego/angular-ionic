@@ -1,0 +1,44 @@
+div.header-section
+    div.logo.dark-logo-bg
+        a
+            img(src="assets/img/logo_min.png")
+            //span.brand-name Siqf
+    div.icon-logo.dark-logo-bg
+        a
+            img(src="assets/img/logo-icon.png")
+
+            a.togle-btn
+                i.fa.fa-outdent
+    div#navbar-collapse-1.navbar-collapse.collapse.yamm.mega-menu
+        //ul.nav.navbar-nav
+            li.dropdown
+                a.dropdown-toggle
+                    Mega
+                    b.fa.fa-angle-down
+            li.dropdown
+                a.dropdown-toggle English
+                b.fa.fa-angle-down
+                    ul.dropdown-menu.language-switch(role="menu")
+                        li(ng-repeat="idioma in [{nome:'Portugês', flag:'brazil_flag.jpg'}]")
+                            a
+                                span {{idioma.nome}}
+                                | img(src="assets/img/flags/{{idioma.flag}}")
+    div.notification-wrap
+        //div.left-notification
+            ul.notification-menu
+                li.d-none
+                    a.btn.btn-default.dropdown-toggle.info-number
+                        i.fa.fa-envelope-o
+                        span.badge.bg-primary 6
+                li.d-none
+                    a.btn.btn-default.dropdown-toggle.info-number
+                        i.fa.fa-tasks
+                        span.badge.bg-primary 9
+                li.d-none
+                    a.btn.btn-default.dropdown-toggle.info-number
+                        i.fa.fa-bell-o
+                        span.badge.bg-warning 9
+        div.right-notification
+            user-menu
+        //form.search-content
+            input.form-control(type="text", placeholder="Search...")

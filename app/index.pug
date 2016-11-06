@@ -1,0 +1,12 @@
+doctype html
+html(lang="en")
+    head
+        title App
+        meta(charset="utf-8")
+        link(href="./assets/vendor.min.css", rel="stylesheet")
+        link(href="./assets/application-css.min.css", rel="stylesheet")
+
+    body.sticky-header(ng-app="app")
+        section(ui-view="")
+        script(src="./assets/javascript/vendor.min.js")
+        script(src="./assets/javascript/application.min.js")
